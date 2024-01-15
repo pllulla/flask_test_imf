@@ -47,7 +47,7 @@ class auth:
         try:
             return {'result': True, 'response': jwt.decode(_jwt, SECRETO, algorithms=['HS256'])}
         except jwt.ExpiredSignatureError:
-            return {'result': False, 'response': 'Token expirado'}
+            return jsonify({'result': False, 'response': 'Token expirado'}), 401
         except jwt.InvalidTokenError:
-            return {'result': False, 'response': 'Token invalido'}
+            return jsonify({'result': False, 'response': 'Token invalido'}), 401
     
